@@ -1,0 +1,11 @@
+.app-templates-pending {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+
+  .app-templates-pending_illustration {
+    width: 90vw;
+    max-width: 480px;
+    margin: 0 auto 32px;
+  }
+}

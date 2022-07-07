@@ -1,0 +1,71 @@
+<ng-container [ngSwitch]="signUpApiStatus$ | async">
+  <ng-container *ngSwitchCase="apiState.Success">
+    <app-template-success [headline]="(signUpData$ | async)?.message"></app-template-success>
+  </ng-container>
+  <ng-container *ngSwitchCase="apiState.Pending">
+    <app-template-pending></app-template-pending>
+  </ng-container>
+  <ng-container *ngSwitchCase="apiState.Init">
+    <app-template-form>
+      <form [formGroup]="formGroup" (submit)="handleSubmit()">
+        <mat-form-field appearance="fill">
+          <mat-label>E-mail</mat-label>
+          <input matInput formControlName="email"  placeholder="joe.doe@doggo.rocks" type="email">
+          <mat-error *ngIf="formGroup.controls.email.hasError('email') && !formGroup.controls.email.hasError('required')">
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="formGroup.controls.email.hasError('required')">
+            Email is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>First name</mat-label>
+          <input matInput formControlName="firstName"  placeholder="Joe">
+          <mat-error *ngIf="formGroup.controls.firstName.hasError('required')">
+            First name is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Last name</mat-label>
+          <input matInput formControlName="lastName" placeholder="Doe">
+          <mat-error *ngIf="formGroup.controls.lastName.hasError('required')">
+            First name is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Password</mat-label>
+          <input matInput formControlName="password" type="password">
+          <mat-error *ngIf="formGroup.controls.password.hasError('password') && !formGroup.controls.password.hasError('required')">
+            Your password does not meet our security rules
+          </mat-error>
+          <mat-error *ngIf="formGroup.controls.password.hasError('required')">
+            Password is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Password confirmation</mat-label>
+          <input matInput formControlName="passwordConfirm" type="password" [errorStateMatcher]="passwordConfirmErrorMatcher">
+          <mat-error *ngIf="formGroup.hasError('passwordConfirmMismatch') && !formGroup.controls.passwordConfirm.hasError('required')">
+            Your password confirmation is <strong>mismatched</strong>
+          </mat-error>
+          <mat-error *ngIf="formGroup.controls.passwordConfirm.hasError('required')">
+            Password confirmation is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <div class="app-templates-form_controls">
+          <button mat-raised-button type="submit" color="primary">Submit</button>
+          <button mat-raised-button type="reset" color="accent">Reset</button>
+          <a routerLink="/auth/sign-in" mat-button>Sign in</a>
+        </div>
+      </form>
+    </app-template-form>
+  </ng-container>
+  <ng-container *ngSwitchDefault>
+    <app-template-failed [headline]="(signUpData$ | async)?.message"></app-template-failed>
+  </ng-container>
+</ng-container>

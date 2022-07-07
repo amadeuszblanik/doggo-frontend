@@ -1,0 +1,52 @@
+<app-template-form>
+  <ng-container [ngSwitch]="petsAddApiStatus$ | async">
+    <form *ngSwitchDefault [formGroup]="formGroup" (submit)="handleSubmit()">
+      <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name"  placeholder="Goldie">
+        <mat-error *ngIf="formGroup.controls.name.hasError('required')">
+          Name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Kind</mat-label>
+        <select matNativeControl formControlName="kind" required>
+          <option *ngFor="let petKind of petKinds" [value]="petKind">{{ petKind }}</option>
+        </select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Breed</mat-label>
+        <input matInput formControlName="breed"  placeholder="Standard Schnauzer">
+        <mat-error *ngIf="formGroup.controls.breed.hasError('required')">
+          Breed is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Microchip number</mat-label>
+        <input matInput formControlName="microchip"  placeholder="XXXXXXXXXXXXXXX">
+        <mat-error *ngIf="formGroup.controls.microchip.hasError('required')">
+          Microchip number is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Breed</mat-label>
+        <input matInput formControlName="birthDate"  placeholder="12/02/2022" type="date">
+        <mat-error *ngIf="formGroup.controls.birthDate.hasError('required')">
+          Birth date is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <div class="app-templates-form_controls">
+        <button mat-raised-button type="submit" color="primary">Add</button>
+        <button mat-button type="clear">Clear</button>
+      </div>
+    </form>
+    <div *ngSwitchCase="apiState.Success" class="app-templates-form_success">
+      Your pet <strong>{{ petsAddPetName$ | async }}</strong> was added to your list!
+    </div>
+  </ng-container>
+</app-template-form>

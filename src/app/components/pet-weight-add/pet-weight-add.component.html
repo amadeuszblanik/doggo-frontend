@@ -1,0 +1,35 @@
+<mat-card class="app-pet-weight-add-card">
+  <mat-card-title>Add weight</mat-card-title>
+  <form class="app-pet-weight-add-form" [formGroup]="formGroup" (submit)="handleSubmit()">
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Pet weight</mat-label>
+        <input type="number" matInput formControlName="weight" placeholder="9.80">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Weight units</mat-label>
+        <mat-select formControlName="unit">
+          <mat-option *ngFor="let weightUnit of weightUnits" [value]="weightUnit">
+            {{weightUnit}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Date</mat-label>
+        <input type="date" matInput formControlName="date">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Time</mat-label>
+        <input type="time" matInput formControlName="time">
+      </mat-form-field>
+    </div>
+
+    <mat-card-actions>
+      <button mat-raised-button type="submit" color="primary" [disabled]="!(petDetailsId$ | async)">Add</button>
+      <button mat-button type="reset">Clear</button>
+    </mat-card-actions>
+  </form>
+</mat-card>

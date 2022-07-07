@@ -1,0 +1,19 @@
+.app-pet-weight-add-card {
+  margin-bottom: 32px;
+}
+
+.app-pet-weight-add-form {
+  margin-top: 24px;
+
+  mat-form-field {
+    margin: 0 8px 16px;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}

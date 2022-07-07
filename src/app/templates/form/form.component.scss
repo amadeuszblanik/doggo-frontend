@@ -1,0 +1,35 @@
+.app-templates-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 720px;
+  margin: 0 auto;
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .app-templates-form_input,
+  mat-form-field {
+    margin-bottom: 16px;
+  }
+
+  .app-templates-form_controls {
+    a,
+    button {
+      margin: 0 8px;
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  .app-templates-form_success {
+    text-align: center;
+  }
+}

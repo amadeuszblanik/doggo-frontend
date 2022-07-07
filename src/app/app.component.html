@@ -1,0 +1,10 @@
+<app-topbar (menuToggle)="drawer.toggle()"></app-topbar>
+
+<mat-drawer-container class="app-drawer-container">
+  <mat-drawer #drawer class="app-drawer" mode="side">
+    <app-navigation></app-navigation>
+  </mat-drawer>
+  <mat-drawer-content class="app-drawer_content">
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

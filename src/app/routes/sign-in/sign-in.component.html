@@ -1,0 +1,31 @@
+<app-template-form>
+  <form [formGroup]="formGroup" (submit)="handleSubmit()">
+    <mat-form-field appearance="fill">
+      <mat-label>E-mail</mat-label>
+      <input matInput formControlName="username"  placeholder="joe.doe@doggo.rocks" type="email">
+      <mat-error *ngIf="formGroup.controls.username.hasError('email') && !formGroup.controls.username.hasError('required')">
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="formGroup.controls.username.hasError('required')">
+        Email is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Password</mat-label>
+      <input matInput formControlName="password" type="password">
+      <mat-error *ngIf="formGroup.controls.password.hasError('password') && !formGroup.controls.password.hasError('required')">
+        Your password does not meet our security rules
+      </mat-error>
+      <mat-error *ngIf="formGroup.controls.password.hasError('required')">
+        Password is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <div class="app-templates-form_controls">
+      <button mat-raised-button type="submit" color="primary">Sign in</button>
+      <a routerLink="/auth/sign-up" mat-button>Sign up</a>
+      <a routerLink="/auth/reset-password" mat-button>Reset password</a>
+    </div>
+  </form>
+</app-template-form>

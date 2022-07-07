@@ -1,0 +1,11 @@
+.app-templates-failed {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+
+  .app-templates-failed_illustration {
+    width: 90vw;
+    max-width: 480px;
+    margin: 0 auto 32px;
+  }
+}

@@ -1,0 +1,11 @@
+.app-templates-success {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+
+  .app-templates-success_illustration {
+    width: 90vw;
+    max-width: 480px;
+    margin: 0 auto 32px;
+  }
+}
