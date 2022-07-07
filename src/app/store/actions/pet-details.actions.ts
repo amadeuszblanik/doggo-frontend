@@ -16,7 +16,7 @@ const fetch = createAction(PetDetailsActions.Fetch, props<{ id: string }>());
 const fetchSuccess = createAction(PetDetailsActions.FetchSuccess, props<{ data: PetsSingleApiResponse }>());
 const fetchFailed = createAction(PetDetailsActions.FetchFailed, props<{ error: CommonErrorResponse }>());
 
-const addWeight = createAction(PetDetailsActions.AddWeight, props<{ id: number; body: PetWeightCreateDto }>());
+const addWeight = createAction(PetDetailsActions.AddWeight, props<{ id: string; body: PetWeightCreateDto }>());
 const addWeightSuccess = createAction(PetDetailsActions.AddWeightSuccess, props<{ data: true }>());
 const addWeightFailed = createAction(PetDetailsActions.AddWeightFailed, props<{ error: CommonErrorResponse }>());
 

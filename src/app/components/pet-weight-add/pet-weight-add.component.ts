@@ -31,7 +31,7 @@ export class PetWeightAddComponent implements OnInit, OnDestroy {
   ngUnsubscribe$ = new Subject<void>();
 
   // Redux data
-  petDetailsId$: Observable<number | null>;
+  petDetailsId$: Observable<string | null>;
   petDetailsAddWeightError$: Observable<CommonErrorResponse | null>;
   petDetailsAddWeightApiState$: Observable<ApiState>;
 
@@ -62,7 +62,7 @@ export class PetWeightAddComponent implements OnInit, OnDestroy {
     }
 
     this.petDetailsId$.pipe(first()).subscribe((id) => {
-      if (typeof id !== 'number') {
+      if (typeof id !== 'string') {
         this.snackBar.open('Pet not found', 'OK', { duration: 3000 });
 
         return;

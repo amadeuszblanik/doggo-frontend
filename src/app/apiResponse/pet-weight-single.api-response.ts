@@ -1,7 +1,7 @@
 import { WeightUnits } from '../types/weight-units.type';
 
 export interface PetWeightSingleApiResponse {
-  id: number;
+  id: string;
   weight: number;
   unit: WeightUnits;
   date: Date;
