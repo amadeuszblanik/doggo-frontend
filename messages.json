@@ -1,0 +1,8 @@
+{
+  "locale": "en-US",
+  "translations": {
+    "home_page_welcome": "Hello, Hoomans!",
+    "home_page_content": "{$START_PARAGRAPH} Doggo.Rocks is an application for manage your pets. Currently application is on {$START_ITALIC_TEXT}INDEV{$CLOSE_ITALIC_TEXT} stage. Our goal for the finishing first stage is to develop web and iOS application for: {$CLOSE_PARAGRAPH}{$START_UNORDERED_LIST}{$START_LIST_ITEM}Weight management{$CLOSE_LIST_ITEM}{$START_LIST_ITEM}Vaccination and meds management{$CLOSE_LIST_ITEM}{$START_LIST_ITEM}Digital health log{$CLOSE_LIST_ITEM}{$CLOSE_UNORDERED_LIST}{$START_PARAGRAPH} In the future we will add more features and improve the application. Such like: {$CLOSE_PARAGRAPH}{$START_UNORDERED_LIST}{$START_LIST_ITEM}Dog park location in your area{$CLOSE_LIST_ITEM}{$START_LIST_ITEM}Dog walk tracking{$CLOSE_LIST_ITEM}{$START_LIST_ITEM}Analysing dog health enhanced with AI{$CLOSE_LIST_ITEM}{$START_LIST_ITEM}and much more…{$CLOSE_LIST_ITEM}{$CLOSE_UNORDERED_LIST}{$START_PARAGRAPH} We are looking forward to see you in the future! {$CLOSE_PARAGRAPH}{$START_PARAGRAPH}We believe in {$START_ITALIC_TEXT}open source projects{$CLOSE_ITALIC_TEXT}. Doggo.Rocks repositories will be free to use and MIT licenced until it stays on INDEV stage:{$CLOSE_PARAGRAPH}{$START_UNORDERED_LIST}{$START_LIST_ITEM}{$START_LINK}Node.JS Backend Application{$CLOSE_LINK}{$CLOSE_LIST_ITEM}{$START_LIST_ITEM}{$START_LINK_1}iOS Application{$CLOSE_LINK}{$CLOSE_LIST_ITEM}{$START_LIST_ITEM}{$START_LINK_2}Web Application (Angular){$CLOSE_LINK}{$CLOSE_LIST_ITEM}{$CLOSE_UNORDERED_LIST}{$START_PARAGRAPH_1}Woof, Doggo team! 🐾{$CLOSE_PARAGRAPH}",
+    "top_bar_title": "Doggo.Rocks"
+  }
+}

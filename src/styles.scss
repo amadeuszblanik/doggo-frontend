@@ -1,1 +1,44 @@
 /* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+.img-xs {
+  max-width: 16px;
+}
+
+.img-sm {
+  max-width: 24px;
+}
+
+.img-md {
+  max-width: 32px;
+}
+
+.img-lg {
+  max-width: 42px;
+}
+
+.img-xl {
+  max-width: 64px;
+}
+
+.img-2xl {
+  max-width: 128px;
+}
+
+.img-4xl {
+  max-width: 256px;
+}

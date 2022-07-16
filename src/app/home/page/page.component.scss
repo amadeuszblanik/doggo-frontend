@@ -1,0 +1,38 @@
+.app-home-page {
+  width: 100%;
+  padding-top: 24px;
+  text-align: center;
+}
+
+.app-home-page--title {
+  img {
+    margin-bottom: 8px;
+  }
+
+  margin-bottom: 16px;
+}
+
+.app-home-page--content {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  margin-bottom: 48px;
+  text-align: left;
+
+  p {
+    margin-bottom: 8px;
+  }
+
+  ul {
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
+}
+
+.app-home-page--controls {
+  a,
+  button {
+    margin-right: 8px;
+    margin-left: 8px;
+  }
+}

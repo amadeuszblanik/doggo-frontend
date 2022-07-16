@@ -1,0 +1,16 @@
+.app-drawer-container,
+.app-main {
+  height: calc(100% - 64px);
+}
+
+.app-main-container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding-right: 16px;
+  padding-left: 16px;
+
+  @media screen and (min-width: 720px) {
+    padding-right: 24px;
+    padding-left: 24px;
+  }
+}

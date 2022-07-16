@@ -1,0 +1,20 @@
+<div class="app-side-nav">
+  <mat-nav-list>
+    <ng-container *ngFor="let nav of navigationLinks$ | async" [ngSwitch]="nav.url.startsWith('http')">
+      <a *ngSwitchCase="true" mat-list-item [href]="nav.url">
+        <mat-icon class="app-side-nav--icon">{{ nav.icon }}</mat-icon>
+        {{ nav.name }}
+      </a>
+      <a *ngSwitchCase="false" mat-list-item [routerLink]="nav.url">
+        <mat-icon class="app-side-nav--icon">{{ nav.icon }}</mat-icon>
+        {{ nav.name }}
+      </a>
+    </ng-container>
+  </mat-nav-list>
+
+  <mat-divider></mat-divider>
+
+  <p style="text-align: center; margin: 24px auto">{{ (isSignedIn$ | async) ? "Signed in" : "Signed off" }}</p>
+
+  <button mat-button (click)="changeNavigationLinks(!this.isSignedIn$.value)">Switch sign off</button>
+</div>

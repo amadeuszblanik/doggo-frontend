@@ -1,0 +1,4 @@
+**/*.stories.ts
+**/*.spec.js
+**/*.spec.ts
+**/karma.conf.js
