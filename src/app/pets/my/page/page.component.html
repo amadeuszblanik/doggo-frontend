@@ -1,0 +1,42 @@
+<div class="app-pets-my--main" [ngSwitch]="petsState$ | async">
+  <ng-container *ngSwitchCase="apiState.Failure">
+    <app-failed>
+      <h2>{{petsErrorMessage$ | async}}</h2>
+      <button
+        mat-raised-button
+        color="accent"
+        (click)="fetchPets()"
+      >
+        <mat-icon>refresh</mat-icon>
+        Retry
+      </button>
+    </app-failed>
+  </ng-container>
+  <div *ngSwitchCase="apiState.Success" class="app-pets-my--list">
+    <mat-card class="app-pets-my--pet" *ngFor="let pet of pets$ | async">
+      <mat-card-header>
+        <div mat-card-avatar class="app-pets-my--pet-header" style="background-image: url({{ pet.breed?.image }})"></div>
+        <mat-card-title>{{pet.name}}</mat-card-title>
+        <mat-card-subtitle>{{pet.kind | uppercase}} · {{pet.breed?.name | uppercase}} </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Microchip: <span>{{pet.microchip}}</span></p>
+        <p>Birth date: <span>{{pet.birthDate | date}}</span> ({{pet.birthDate | age}})</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button disabled mat-icon-button aria-label="Weight" color="primary">
+          <mat-icon>monitor_weight</mat-icon>
+        </button>
+        <button disabled mat-icon-button aria-label="Vaccines" color="accent">
+          <mat-icon>vaccines</mat-icon>
+        </button>
+        <button disabled mat-icon-button aria-label="Medications" color="warn">
+          <mat-icon>medication</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <div *ngSwitchDefault class="app-pets-my--loader">
+    <mat-spinner></mat-spinner>
+  </div>
+</div>

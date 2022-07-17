@@ -12,10 +12,13 @@ import { HomeModule } from './home/home.module';
 import { SharedModule } from './shared/shared.module';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { AuthModule } from './auth/auth.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
 import AuthEffect from './store/auth/auth.effect';
 import ConfigEffect from './store/config/config.effect';
+import { PetsModule } from './pets/pets.module';
+import PetsEffect from './store/pets/pets.effect';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,13 +29,15 @@ import ConfigEffect from './store/config/config.effect';
     HomeModule,
     SharedModule,
     AuthModule,
+    PetsModule,
     StoreModule.forRoot(reducers, { metaReducers }),
-    EffectsModule.forRoot([AuthEffect, ConfigEffect]),
+    EffectsModule.forRoot([AuthEffect, ConfigEffect, PetsEffect]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     MatSidenavModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent],
+  exports: [],
 })
 export class AppModule {}

@@ -1,0 +1,29 @@
+.app-pets-my--main {
+  margin-top: 16px;
+}
+
+.app-pets-my--list {
+  display: grid;
+  grid-gap: 16px;
+  grid-template-columns: repeat(1, 1fr);
+
+  @media screen and (min-width: 720px) {
+    grid-gap: 24px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.app-pets-my--pet {
+  margin-bottom: 8px;
+}
+
+.app-pets-my--pet-header {
+  background-size: cover;
+}
+
+.app-pets-my--loader {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 0 auto;
+}
