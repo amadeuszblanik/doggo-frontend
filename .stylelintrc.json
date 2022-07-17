@@ -11,15 +11,7 @@
     "selector-type-no-unknown": [
       true,
       {
-        "ignoreTypes": [
-          "nx-expansion-panel",
-          "nx-expansion-panel-header",
-          "nx-icon",
-          "nx-message",
-          "nx-formfield",
-          "nx-progressbar",
-          "agm-map"
-        ]
+        "ignoreTypes": []
       }
     ],
     "color-no-invalid-hex": true,
@@ -30,7 +22,7 @@
       }
     ],
     "max-empty-lines": 1,
-    "unit-allowed-list": ["em", "rem", "%", "px", "vh", "s", "ms"],
+    "unit-allowed-list": ["em", "rem", "%", "px", "vh", "s", "ms", "fr"],
     "prettier/prettier": true
   }
 }
