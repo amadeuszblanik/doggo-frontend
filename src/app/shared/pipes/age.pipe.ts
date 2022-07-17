@@ -27,6 +27,6 @@ export class AgePipe implements PipeTransform {
       lifeSpan.push(`${days} days`);
     }
 
-    return lifeSpan.join(' ');
+    return lifeSpan.join(' ') || 'Just now!';
   }
 }
