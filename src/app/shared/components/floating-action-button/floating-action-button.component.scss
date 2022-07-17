@@ -1,0 +1,36 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+@import '../../../../styles/material-theme';
+@import '../../../../styles/vars';
+
+@include mat.core();
+
+.app-floating-action-button {
+  position: fixed;
+  right: var(--size-lg);
+  bottom: var(--size-lg);
+  z-index: 1010;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  color: mat.get-color-from-palette(map.get($color-config, 'primary'), 500);
+  background: mat.get-color-from-palette(map.get($color-config, 'primary'), 100);
+  border: none;
+  border-radius: var(--size-sm);
+  cursor: pointer;
+  transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1);
+  appearance: none;
+
+  @media screen {
+    &:hover {
+      background: mat.get-color-from-palette(map.get($color-config, 'primary'), 200);
+    }
+  }
+
+  &:focus {
+    background: mat.get-color-from-palette(map.get($color-config, 'primary'), 400);
+  }
+}

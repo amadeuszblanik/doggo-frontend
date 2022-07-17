@@ -10,10 +10,29 @@ import { RouterModule } from '@angular/router';
 import { SuccessComponent } from './components/success/success.component';
 import { FailedComponent } from './components/failed/failed.component';
 import { AgePipe } from './pipes/age.pipe';
+import { FloatingActionButtonComponent } from './components/floating-action-button/floating-action-button.component';
+import { SharedTemplateFormComponent } from './templates/form/form.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [TopBarComponent, SideNavComponent, SuccessComponent, FailedComponent, AgePipe],
-  imports: [CommonModule, MatToolbarModule, MatIconModule, MatButtonModule, MatListModule, RouterModule],
-  exports: [TopBarComponent, SideNavComponent, SuccessComponent, FailedComponent, AgePipe],
+  declarations: [
+    TopBarComponent,
+    SideNavComponent,
+    SuccessComponent,
+    FailedComponent,
+    AgePipe,
+    FloatingActionButtonComponent,
+    SharedTemplateFormComponent,
+  ],
+  imports: [CommonModule, MatToolbarModule, MatIconModule, MatButtonModule, MatListModule, RouterModule, ReactiveFormsModule],
+  exports: [
+    TopBarComponent,
+    SideNavComponent,
+    SuccessComponent,
+    FailedComponent,
+    AgePipe,
+    FloatingActionButtonComponent,
+    SharedTemplateFormComponent,
+  ],
 })
 export class SharedModule {}

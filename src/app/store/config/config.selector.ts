@@ -1,9 +1,8 @@
 import { AppState } from '../index';
 import { createSelector } from '@ngrx/store';
 
-const selectAuth = (state: AppState) => state.auth;
+const selectConfig = (state: AppState) => state.config;
 
-export const getAuthIsAuthenticated = createSelector(selectAuth, ({ accessToken }) => Boolean(accessToken));
+export const getConfigPublic = createSelector(selectConfig, ({ publicData }) => publicData);
 
-export const getAuthSignInState = createSelector(selectAuth, ({ signInState }) => signInState);
-export const getAuthSignInError = createSelector(selectAuth, ({ signInError }) => signInError);
+export const getConfigBreeds = createSelector(selectConfig, getConfigPublic, (_, publicState) => publicState?.breeds || []);

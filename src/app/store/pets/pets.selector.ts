@@ -8,3 +8,7 @@ export const getPets = createSelector(selectPets, ({ pets }): PetsMyApiResponse[
 export const getPetsState = createSelector(selectPets, ({ petsState }) => petsState);
 export const getPetsError = createSelector(selectPets, ({ petsError }) => petsError);
 export const getPetsErrorMessage = createSelector(selectPets, ({ petsError }) => petsError?.message || 'Failed to load.');
+
+export const getPetsAddState = createSelector(selectPets, ({ addState }) => addState);
+export const getPetsAdd = createSelector(selectPets, ({ add }) => add);
+export const getPetsAddError = createSelector(selectPets, ({ addError }) => addError);

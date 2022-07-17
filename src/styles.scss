@@ -1,5 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
 
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+@import 'styles/material-theme';
+@import 'styles/vars';
+
+@include mat.core();
+
+:root {
+  --size-xs: #{$size-xs};
+  --size-sm: #{$size-sm};
+  --size-md: #{$size-md};
+  --size-lg: #{$size-lg};
+  --size-xl: #{$size-xl};
+  --size-xxl: #{$size-xxl};
+  --color-primary: #{mat.get-color-from-palette(map.get($color-config, 'primary'), 500)};
+  --color-accent: #{mat.get-color-from-palette(map.get($color-config, 'accent'), 500)};
+  --color-warn: #{mat.get-color-from-palette(map.get($color-config, 'warn'), 500)};
+  --color-text: white;
+  --color-background: #303030;
+}
+
 html,
 body {
   height: 100%;

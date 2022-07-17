@@ -5,6 +5,7 @@ import { AuthSignInPageComponent } from './auth/sign-in/page/page.component';
 import { AuthSignOffPageComponent } from './auth/sign-off/page/page.component';
 import { AuthSignUpPageComponent } from './auth/sign-up/page/page.component';
 import { PetsMyPageComponent } from './pets/my/page/page.component';
+import { PetsAddPageComponent } from './pets/add/page/page.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,10 @@ const routes: Routes = [
   {
     path: 'pets/my',
     component: PetsMyPageComponent,
+  },
+  {
+    path: 'pets/add',
+    component: PetsAddPageComponent,
   },
 ];
 

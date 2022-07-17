@@ -1,0 +1,53 @@
+<mat-card class="app-pets-add--main">
+  <ng-container [ngSwitch]="petsAddState$ | async">
+    <app-success  *ngSwitchCase="apiState.Success">
+      <h2>Your new pet was added!</h2>
+    </app-success>
+
+    <app-shared-template-form *ngSwitchDefault [formGroup]="formGroup" (submit)="submitForm()">
+      <h2>Add your new pet</h2>
+
+      <mat-form-field class="app-shared-template-form--field" appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" type="text">
+        <mat-error *ngIf="formGroup.controls.name.hasError('required')">Name is <strong>required</strong></mat-error>
+      </mat-form-field>
+
+      <mat-form-field  class="app-shared-template-form--field" appearance="fill">
+        <mat-label>Select an pet kind</mat-label>
+        <mat-select formControlName="kind">
+          <mat-option>None</mat-option>
+          <mat-option *ngFor="let petKind of petKinds" [value]="petKind[1]">{{petKind[0]}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="app-shared-template-form--field" appearance="fill">
+        <mat-label>Breed</mat-label>
+        <mat-select formControlName="breed">
+          <mat-option>None</mat-option>
+          <mat-option *ngFor="let breed of breeds$ | async" [value]="breed.id">{{breed.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="app-shared-template-form--field" appearance="fill">
+        <mat-label>Microchip</mat-label>
+        <input matInput formControlName="microchip" type="text">
+      </mat-form-field>
+
+      <mat-form-field class="app-shared-template-form--field" appearance="fill">
+        <mat-label>Birth date</mat-label>
+        <input matInput formControlName="birthDate" type="date">
+        <mat-error *ngIf="formGroup.controls.birthDate.hasError('required')">Birth date is <strong>required</strong></mat-error>
+      </mat-form-field>
+
+      <div class="app-shared-template-form--controls">
+        <button
+          mat-raised-button
+          type="submit"
+          color="primary"
+          i18n="@@auth_sign_up_submit"
+        >Add</button>
+      </div>
+    </app-shared-template-form>
+  </ng-container>
+</mat-card>

@@ -8,6 +8,7 @@ import { PublicConfigApiResponse } from '../api-responses/public-config.api-resp
 import { AuthSignUpDto } from '../dto/auth-sign-up.dto';
 import { CommonMessageApiResponse } from '../api-responses/common-message.api-response';
 import { PetsMyApiResponse } from '../api-responses/pets-my.api-response';
+import { PetCreateDto } from '../dto/pet-create.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -29,6 +30,10 @@ export class ApiService {
 
   myPets(): Observable<PetsMyApiResponse[]> {
     return this.get<PetsMyApiResponse[]>('pets/my');
+  }
+
+  addPets(body: PetCreateDto): Observable<PetsMyApiResponse> {
+    return this.post<PetsMyApiResponse, PetCreateDto>('pets/add', body);
   }
 
   private get<T>(endpoint: string): Observable<T> {
