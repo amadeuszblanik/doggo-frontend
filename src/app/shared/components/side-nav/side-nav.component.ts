@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { NavigationLinksType } from '../../types/navigation-links.type';
+import { map, Observable } from 'rxjs';
+import { NavigationLinksType } from '../../../types/navigation-links.type';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../store';
+import { getAuthIsAuthenticated } from '../../../store/auth/auth.selector';
 
 const MOCKED_SIGNED_OFF = [
   {
@@ -15,11 +18,6 @@ const MOCKED_SIGNED_OFF = [
 ];
 
 const MOCKED_SIGNED_IN = [
-  {
-    name: 'Home',
-    icon: 'home',
-    url: '/',
-  },
   { name: 'Pets', icon: 'pets', url: '/pets' },
   { name: 'Profile', icon: 'account_circle', url: '/profile' },
   { name: 'Sign off', icon: 'logout', url: '/auth/sign-up' },
@@ -44,11 +42,11 @@ const SHARED_LINKS = [
   styleUrls: ['./side-nav.component.scss'],
 })
 export class SideNavComponent {
-  navigationLinks$ = new BehaviorSubject<NavigationLinksType[]>([...MOCKED_SIGNED_OFF, ...SHARED_LINKS]);
-  isSignedIn$ = new BehaviorSubject<boolean>(false);
+  navigationLinks$: Observable<NavigationLinksType[]>;
 
-  changeNavigationLinks(isSignedIn: boolean) {
-    this.isSignedIn$.next(isSignedIn);
-    this.navigationLinks$.next(isSignedIn ? [...MOCKED_SIGNED_IN, ...SHARED_LINKS] : [...MOCKED_SIGNED_OFF, ...SHARED_LINKS]);
+  constructor(private store: Store<AppState>) {
+    this.navigationLinks$ = this.store
+      .select(getAuthIsAuthenticated)
+      .pipe(map((isSignedIn) => (isSignedIn ? [...MOCKED_SIGNED_IN, ...SHARED_LINKS] : [...MOCKED_SIGNED_OFF, ...SHARED_LINKS])));
   }
 }

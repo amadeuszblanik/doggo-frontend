@@ -5,12 +5,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
-import { reducers, metaReducers } from './reducers';
+import { metaReducers, reducers } from './store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { HomeModule } from './home/home.module';
 import { SharedModule } from './shared/shared.module';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { AuthModule } from './auth/auth.module';
+import { HttpClientModule } from '@angular/common/http';
+import { EffectsModule } from '@ngrx/effects';
+import AuthEffect from './store/auth/auth.effect';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,9 +24,12 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     BrowserAnimationsModule,
     HomeModule,
     SharedModule,
+    AuthModule,
     StoreModule.forRoot(reducers, { metaReducers }),
+    EffectsModule.forRoot([AuthEffect]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     MatSidenavModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

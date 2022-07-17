@@ -130,6 +130,12 @@ module.exports = {
       }
     ],
     "@typescript-eslint/type-annotation-spacing": "error",
+    "@typescript-eslint/unbound-method": [
+      "error",
+      {
+        "ignoreStatic": true
+      }
+    ],
     "@typescript-eslint/unified-signatures": "error",
     "@typescript-eslint/no-unused-vars": [
       "error",

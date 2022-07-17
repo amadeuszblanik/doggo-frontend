@@ -1,0 +1,52 @@
+<mat-card class="app-auth-sign-in--main">
+  <ng-container [ngSwitch]="authSignInState$ | async">
+    <app-success  *ngSwitchCase="apiState.Success">
+      <h2 i18n="@@auth_sign_in_success_title">You are signed in!</h2>
+      <p i18n="@@auth_sign_in_success_description">You can now use the application.</p>
+    </app-success>
+
+    <app-auth-template-form *ngSwitchDefault [formGroup]="formGroup" (submit)="submitForm()">
+      <h2 i18n="@@auth_sign_in_title">Welcome back, Hooman!</h2>
+
+      <mat-form-field class="app-auth-template-form--field" appearance="fill">
+        <mat-label i18n="@@auth_sign_in_email">E-mail</mat-label>
+        <input matInput formControlName="username" placeholder="joe.doe@doggo.rocks" type="email">
+        <mat-error
+          i18n="@@auth_sign_in_email_invalid"
+          *ngIf="formGroup.controls.username.hasError('email') && !formGroup.controls.username.hasError('required')"
+        >Please enter a valid email address</mat-error>
+        <mat-error
+          i18n="@@auth_sign_in_email_required"
+          *ngIf="formGroup.controls.username.hasError('required')"
+        >Email is <strong>required</strong></mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="app-auth-template-form--field" appearance="fill">
+        <mat-label i18n="@@auth_sign_in_password">Password</mat-label>
+        <input matInput formControlName="password" type="password">
+        <mat-error
+          i18n="@@auth_sign_in_password_invalid"
+          *ngIf="formGroup.controls.password.hasError('password') && !formGroup.controls.password.hasError('required')"
+        >Your password does not meet our security rules</mat-error>
+        <mat-error
+          i18n="@@auth_sign_in_password_required"
+          *ngIf="formGroup.controls.password.hasError('required')"
+        >Password is <strong>required</strong></mat-error>
+      </mat-form-field>
+
+      <div class="app-auth-template-form--controls">
+        <button
+          mat-raised-button
+          type="submit"
+          color="primary"
+          i18n="@@auth_sign_in_submit"
+        >Sign in</button>
+        <a
+          routerLink="/auth/reset-password"
+          mat-button
+          i18n="@@auth_sign_in_reset_password"
+        >Reset password</a>
+      </div>
+    </app-auth-template-form>
+  </ng-container>
+</mat-card>

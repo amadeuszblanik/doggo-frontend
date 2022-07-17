@@ -11,10 +11,4 @@
       </a>
     </ng-container>
   </mat-nav-list>
-
-  <mat-divider></mat-divider>
-
-  <p style="text-align: center; margin: 24px auto">{{ (isSignedIn$ | async) ? "Signed in" : "Signed off" }}</p>
-
-  <button mat-button (click)="changeNavigationLinks(!this.isSignedIn$.value)">Switch sign off</button>
 </div>
