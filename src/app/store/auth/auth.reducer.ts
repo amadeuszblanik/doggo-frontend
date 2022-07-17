@@ -4,7 +4,7 @@ import { Action, ActionReducer, createReducer, on } from '@ngrx/store';
 import { CommonErrorApiResponse } from '../../api-responses/common-error.api-response';
 import { AppState } from '../index';
 
-const LOCAL_STORAGE_KEY = 'auth';
+export const AUTH_LOCAL_STORAGE_KEY = 'auth';
 
 export interface AuthState {
   signInState: ApiState;
@@ -27,13 +27,13 @@ export const authReducer = createReducer(
 
 export const authMetaReducer = (reducer: ActionReducer<AppState>) => (state: AppState, action: Action) => {
   if (action.type === '@ngrx/store/init') {
-    const storageValue = localStorage.getItem(LOCAL_STORAGE_KEY);
+    const storageValue = localStorage.getItem(AUTH_LOCAL_STORAGE_KEY);
 
     if (storageValue) {
       try {
         return JSON.parse(storageValue) as AuthState;
       } catch (e) {
-        localStorage.removeItem(LOCAL_STORAGE_KEY);
+        localStorage.removeItem(AUTH_LOCAL_STORAGE_KEY);
 
         return initialState;
       }
@@ -41,7 +41,7 @@ export const authMetaReducer = (reducer: ActionReducer<AppState>) => (state: App
   }
 
   const nextState = reducer(state, action);
-  localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(nextState));
+  localStorage.setItem(AUTH_LOCAL_STORAGE_KEY, JSON.stringify(nextState));
 
   return nextState;
 };

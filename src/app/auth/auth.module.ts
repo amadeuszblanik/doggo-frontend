@@ -10,9 +10,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { AuthSignOffPageComponent } from './sign-off/page/page.component';
 
 @NgModule({
-  declarations: [AuthSignInPageComponent, AuthTemplateFormComponent],
+  declarations: [AuthSignInPageComponent, AuthTemplateFormComponent, AuthSignOffPageComponent],
   imports: [
     CommonModule,
     MatCardModule,
@@ -24,6 +25,6 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     SharedModule,
     MatSnackBarModule,
   ],
-  exports: [AuthSignInPageComponent, AuthTemplateFormComponent],
+  exports: [AuthSignInPageComponent, AuthTemplateFormComponent, AuthSignOffPageComponent],
 })
 export class AuthModule {}

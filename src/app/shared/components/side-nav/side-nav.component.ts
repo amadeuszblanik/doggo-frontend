@@ -20,7 +20,7 @@ const MOCKED_SIGNED_OFF = [
 const MOCKED_SIGNED_IN = [
   { name: 'Pets', icon: 'pets', url: '/pets' },
   { name: 'Profile', icon: 'account_circle', url: '/profile' },
-  { name: 'Sign off', icon: 'logout', url: '/auth/sign-up' },
+  { name: 'Sign off', icon: 'logout', url: '/auth/sign-off' },
 ];
 
 const SHARED_LINKS = [
