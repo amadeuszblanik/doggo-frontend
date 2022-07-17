@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AUTH_LOCAL_STORAGE_KEY } from '../../../store/auth/auth.reducer';
+import { STORE_LOCAL_STORAGE_KEY } from '../../../store';
 
 @Component({
   selector: 'app-auth-sign-off-page',
@@ -8,6 +8,6 @@ import { AUTH_LOCAL_STORAGE_KEY } from '../../../store/auth/auth.reducer';
 })
 export class AuthSignOffPageComponent implements OnInit {
   ngOnInit(): void {
-    localStorage.removeItem(AUTH_LOCAL_STORAGE_KEY);
+    localStorage.removeItem(STORE_LOCAL_STORAGE_KEY);
   }
 }

@@ -1,0 +1,92 @@
+<mat-card class="app-auth-sign-up--main">
+  <ng-container [ngSwitch]="authSignUpState$ | async">
+    <app-success  *ngSwitchCase="apiState.Success">
+      <h2 i18n="@@auth_sign_up_success_title">You are signed up!</h2>
+      <p i18n="@@auth_sign_up_success_description">{{ (authSignUpMessage$ | async) }}</p>
+    </app-success>
+
+    <app-auth-template-form *ngSwitchDefault [formGroup]="formGroup" (submit)="submitForm()">
+      <h2 i18n="@@auth_sign_up_title">Welcome back, Hooman!</h2>
+
+      <mat-form-field class="app-auth-template-form--field" appearance="fill">
+        <mat-label i18n="@@auth_sign_up_email">E-mail</mat-label>
+        <input matInput formControlName="email" placeholder="joe.doe@doggo.rocks" type="email">
+        <mat-error
+          i18n="@@auth_sign_up_email_invalid"
+          *ngIf="formGroup.controls.email.hasError('email') && !formGroup.controls.email.hasError('required')"
+        >Please enter a valid email address</mat-error>
+        <mat-error
+          i18n="@@auth_sign_up_email_required"
+          *ngIf="formGroup.controls.email.hasError('required')"
+        >Email is <strong>required</strong></mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="app-auth-template-form--field" appearance="fill">
+        <mat-label i18n="@@auth_sign_up_first_name">First name</mat-label>
+        <input matInput formControlName="firstName" placeholder="Joe" type="text">
+        <mat-error
+          i18n="@@auth_sign_up_first_name_required"
+          *ngIf="formGroup.controls.firstName.hasError('required')"
+        >First name is <strong>required</strong></mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="app-auth-template-form--field" appearance="fill">
+        <mat-label i18n="@@auth_sign_up_last_name">Last name</mat-label>
+        <input matInput formControlName="lastName" placeholder="Doe" type="text">
+        <mat-error
+          i18n="@@auth_sign_up_last_name_required"
+          *ngIf="formGroup.controls.lastName.hasError('required')"
+        >Last name is <strong>required</strong></mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="app-auth-template-form--field" appearance="fill">
+        <mat-label i18n="@@auth_sign_up_password">Password</mat-label>
+        <input matInput formControlName="password" type="password">
+        <mat-error
+          i18n="@@auth_sign_up_password_invalid"
+          *ngIf="formGroup.controls.password.hasError('password') && !formGroup.controls.password.hasError('required')"
+        >Your password does not meet our security rules</mat-error>
+        <mat-error
+          i18n="@@auth_sign_up_password_required"
+          *ngIf="formGroup.controls.password.hasError('required')"
+        >Password is <strong>required</strong></mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="app-auth-template-form--field" appearance="fill">
+        <mat-label i18n="@@auth_sign_up_password_confirmation">Password confirmation</mat-label>
+        <input matInput formControlName="passwordConfirm" type="password">
+        <mat-error
+          i18n="@@auth_sign_up_password_confirmation_invalid"
+          *ngIf="formGroup.controls.passwordConfirm.hasError('password') && !formGroup.controls.passwordConfirm.hasError('required')"
+        >Your password does not meet our security rules</mat-error>
+        <mat-error
+          i18n="@@auth_sign_up_password_confirmation_required"
+          *ngIf="formGroup.controls.passwordConfirm.hasError('required')"
+        >Password is <strong>required</strong></mat-error>
+      </mat-form-field>
+
+      <mat-form-field  class="app-auth-template-form--field" appearance="fill">
+        <mat-label>Select an preffered weight</mat-label>
+        <mat-select formControlName="weightUnit">
+          <mat-option>None</mat-option>
+          <mat-option *ngFor="let weightUnit of weightUnits" [value]="weightUnit[1]">{{weightUnit[0]}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+      <div class="app-auth-template-form--controls">
+        <button
+          mat-raised-button
+          type="submit"
+          color="primary"
+          i18n="@@auth_sign_up_submit"
+        >Sign in</button>
+        <a
+          routerLink="/auth/reset-password"
+          mat-button
+          i18n="@@auth_sign_up_reset_password"
+        >Reset password</a>
+      </div>
+    </app-auth-template-form>
+  </ng-container>
+</mat-card>

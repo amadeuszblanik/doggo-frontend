@@ -4,6 +4,9 @@ import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { AuthSignInDto } from '../dto/auth-sign-in.dto';
 import { SignInApiResponse } from '../api-responses/sign-in.api-response';
+import { PublicConfigApiResponse } from '../api-responses/public-config.api-response';
+import { AuthSignUpDto } from '../dto/auth-sign-up.dto';
+import { CommonMessageApiResponse } from '../api-responses/common-message.api-response';
 
 @Injectable({
   providedIn: 'root',
@@ -11,8 +14,16 @@ import { SignInApiResponse } from '../api-responses/sign-in.api-response';
 export class ApiService {
   constructor(private httpClient: HttpClient) {}
 
+  config(): Observable<PublicConfigApiResponse> {
+    return this.get<PublicConfigApiResponse>('config');
+  }
+
   signIn(body: AuthSignInDto): Observable<SignInApiResponse> {
     return this.post<SignInApiResponse, AuthSignInDto>('auth/sign-in', body);
+  }
+
+  signUp(body: AuthSignUpDto): Observable<CommonMessageApiResponse> {
+    return this.post<CommonMessageApiResponse, AuthSignUpDto>('auth/sign-up', body);
   }
 
   private get<T>(endpoint: string): Observable<T> {

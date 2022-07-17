@@ -15,6 +15,7 @@ import { AuthModule } from './auth/auth.module';
 import { HttpClientModule } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
 import AuthEffect from './store/auth/auth.effect';
+import ConfigEffect from './store/config/config.effect';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,7 +27,7 @@ import AuthEffect from './store/auth/auth.effect';
     SharedModule,
     AuthModule,
     StoreModule.forRoot(reducers, { metaReducers }),
-    EffectsModule.forRoot([AuthEffect]),
+    EffectsModule.forRoot([AuthEffect, ConfigEffect]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     MatSidenavModule,
     HttpClientModule,

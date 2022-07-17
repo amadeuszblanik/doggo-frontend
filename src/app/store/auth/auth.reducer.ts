@@ -1,21 +1,29 @@
 import { ApiState } from '../../types/api-state.type';
 import authActions from './auth.action';
-import { Action, ActionReducer, createReducer, on } from '@ngrx/store';
+import { createReducer, on } from '@ngrx/store';
 import { CommonErrorApiResponse } from '../../api-responses/common-error.api-response';
-import { AppState } from '../index';
-
-export const AUTH_LOCAL_STORAGE_KEY = 'auth';
+import { CommonMessageApiResponse } from '../../api-responses/common-message.api-response';
 
 export interface AuthState {
+  accessToken: string | null;
+
   signInState: ApiState;
   signInError: CommonErrorApiResponse | null;
-  accessToken: string | null;
+
+  signUpState: ApiState;
+  signUpResponse: CommonMessageApiResponse | null;
+  signUpError: CommonErrorApiResponse | null;
 }
 
 const initialState: AuthState = {
+  accessToken: null,
+
   signInState: ApiState.Init,
   signInError: null,
-  accessToken: null,
+
+  signUpState: ApiState.Init,
+  signUpResponse: null,
+  signUpError: null,
 };
 
 export const authReducer = createReducer(
@@ -23,25 +31,20 @@ export const authReducer = createReducer(
   on(authActions.signIn, (state) => ({ ...state, signInState: ApiState.Pending })),
   on(authActions.signInSuccess, (state, { accessToken }) => ({ ...state, signInState: ApiState.Success, accessToken, signInError: null })),
   on(authActions.signInFailure, (state, { error }) => ({ ...state, signInState: ApiState.Failure, signInError: error })),
+
+  on(authActions.signUp, (state) => ({ ...state, signUpState: ApiState.Pending, accessToken: null })),
+  on(authActions.signUpSuccess, (state, { data }) => ({
+    ...state,
+    signUpState: ApiState.Success,
+    signUpResponse: data,
+    accessToken: null,
+    signUpError: null,
+  })),
+  on(authActions.signUpFailure, (state, { error }) => ({
+    ...state,
+    signUpState: ApiState.Failure,
+    signUpResponse: null,
+    accessToken: null,
+    signUpError: error,
+  })),
 );
-
-export const authMetaReducer = (reducer: ActionReducer<AppState>) => (state: AppState, action: Action) => {
-  if (action.type === '@ngrx/store/init') {
-    const storageValue = localStorage.getItem(AUTH_LOCAL_STORAGE_KEY);
-
-    if (storageValue) {
-      try {
-        return JSON.parse(storageValue) as AuthState;
-      } catch (e) {
-        localStorage.removeItem(AUTH_LOCAL_STORAGE_KEY);
-
-        return initialState;
-      }
-    }
-  }
-
-  const nextState = reducer(state, action);
-  localStorage.setItem(AUTH_LOCAL_STORAGE_KEY, JSON.stringify(nextState));
-
-  return nextState;
-};
