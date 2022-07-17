@@ -28,6 +28,8 @@ export class AuthSignInPageComponent implements OnInit, OnDestroy {
   constructor(private store: Store<AppState>, private snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
+    this.store.dispatch(authActions.signInReset());
+
     combineLatest([this.authSignInState$, this.authSignInError$])
       .pipe(
         takeUntil(this.ngDestroy$),

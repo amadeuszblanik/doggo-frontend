@@ -29,6 +29,7 @@ const initialState: AuthState = {
 export const authReducer = createReducer(
   initialState,
   on(authActions.signIn, (state) => ({ ...state, signInState: ApiState.Pending })),
+  on(authActions.signInReset, (state) => ({ ...state, signInState: state.accessToken ? state.signInState : ApiState.Init })),
   on(authActions.signInSuccess, (state, { accessToken }) => ({ ...state, signInState: ApiState.Success, accessToken, signInError: null })),
   on(authActions.signInFailure, (state, { error }) => ({ ...state, signInState: ApiState.Failure, signInError: error })),
 
